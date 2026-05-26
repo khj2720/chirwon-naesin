@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans KR", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-2: var(--color-surface-2);
+  --color-surface-offset: var(--color-surface-offset);
+  --color-divider: var(--color-divider);
+  --color-border: var(--color-border);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-faint: var(--color-text-faint);
+  
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-light: var(--color-primary-light);
+  --color-accent: var(--color-accent);
+  
+  --color-grade-1: var(--grade-1);
+  --color-grade-1-bg: var(--grade-1-bg);
+  --color-grade-2: var(--grade-2);
+  --color-grade-2-bg: var(--grade-2-bg);
+  --color-grade-3: var(--grade-3);
+  --color-grade-3-bg: var(--grade-3-bg);
+  --color-grade-4: var(--grade-4);
+  --color-grade-4-bg: var(--grade-4-bg);
+  --color-grade-5: var(--grade-5);
+  --color-grade-5-bg: var(--grade-5-bg);
+  
+  --color-achieve-a: var(--achieve-a);
+  --color-achieve-a-bg: var(--achieve-a-bg);
+  --color-achieve-b: var(--achieve-b);
+  --color-achieve-b-bg: var(--achieve-b-bg);
+  --color-achieve-c: var(--achieve-c);
+  --color-achieve-c-bg: var(--achieve-c-bg);
+  --color-achieve-d: var(--achieve-d);
+  --color-achieve-d-bg: var(--achieve-d-bg);
+  --color-achieve-e: var(--achieve-e);
+  --color-achieve-e-bg: var(--achieve-e-bg);
+}
+
+@layer base {
+  :root, [data-theme="light"] {
+    --color-bg: #f1f5f9;
+    --color-surface: #ffffff;
+    --color-surface-2: #f8fafc;
+    --color-surface-offset: #e2e8f0;
+    --color-divider: #f1f5f9;
+    --color-border: #e2e8f0;
+    --color-text: #334155;
+    --color-text-muted: #64748b;
+    --color-text-faint: #94a3b8;
+    --color-primary: #1b3a7a;
+    --color-primary-hover: #1e3a8a;
+    --color-primary-light: #eff6ff;
+    --color-accent: #3b82f6;
+    --grade-1: #1a56db; --grade-1-bg: #dbeafe;
+    --grade-2: #0e7c5b; --grade-2-bg: #d1fae5;
+    --grade-3: #b45309; --grade-3-bg: #fef3c7;
+    --grade-4: #c2410c; --grade-4-bg: #ffedd5;
+    --grade-5: #9d174d; --grade-5-bg: #fce7f3;
+    --achieve-a-bg: #1b3a7a; --achieve-a: #fff;
+    --achieve-b-bg: #3563c9; --achieve-b: #fff;
+    --achieve-c-bg: #d1fae5; --achieve-c: #0e7c5b;
+    --achieve-d-bg: #fef3c7; --achieve-d: #b45309;
+    --achieve-e-bg: #ffedd5; --achieve-e: #c2410c;
+  }
+  [data-theme="dark"] {
+    --color-bg: #0f172a;
+    --color-surface: #1e293b;
+    --color-surface-2: #334155;
+    --color-surface-offset: #1e293b;
+    --color-divider: #334155;
+    --color-border: #334155;
+    --color-text: #cbd5e1;
+    --color-text-muted: #94a3b8;
+    --color-text-faint: #64748b;
+    --color-primary: #5b7fd4;
+    --color-primary-hover: #4a6bc2;
+    --color-primary-light: #172554;
+    --color-accent: #60a5fa;
+    --grade-1: #5b9cf6; --grade-1-bg: #1e3a8a;
+    --grade-2: #34d399; --grade-2-bg: #064e3b;
+    --grade-3: #fbbf24; --grade-3-bg: #78350f;
+    --grade-4: #f97316; --grade-4-bg: #7c2d12;
+    --grade-5: #f472b6; --grade-5-bg: #831843;
+    --achieve-a-bg: #5b7fd4; --achieve-a: #fff;
+    --achieve-b-bg: #7098e8; --achieve-b: #fff;
+    --achieve-c-bg: #064e3b; --achieve-c: #34d399;
+    --achieve-d-bg: #78350f; --achieve-d: #fbbf24;
+    --achieve-e-bg: #7c2d12; --achieve-e: #f97316;
+  }
+  
+  body {
+    @apply bg-bg text-text antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-5 py-2 rounded-lg text-sm font-semibold min-h-[44px] transition-all cursor-pointer;
+  }
+  .btn-primary {
+    @apply bg-primary text-white border-none hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-text-muted border border-border hover:bg-surface-offset;
+  }
+  .btn-icon {
+    @apply flex items-center justify-center w-10 h-10 rounded-md text-text-muted transition-all hover:bg-surface-offset hover:text-text;
+  }
+
+  /* Shared screen layout */
+  .screen {
+    @apply hidden min-h-dvh flex-col;
+  }
+  .screen.active {
+    @apply flex;
+  }
+  
+  .print-footer {
+    display: none;
+  }
+  
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 1cm;
+    }
+    html, body {
+      background-color: white !important;
+      font-size: 9pt;
+      height: auto;
+    }
+    .print-footer { display: block; text-align: center; font-size: 8pt; color: #888; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #ddd; }
+  }
+}
