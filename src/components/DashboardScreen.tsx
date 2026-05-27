@@ -554,9 +554,9 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Simulation and Radar Side-by-Side Container */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 print:hidden items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch print:grid-cols-1 print:gap-0 page-break-after">
             {/* Average Calculator Panel with Subject Selector Presets */}
-            <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 select-none flex flex-col justify-between">
+            <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 select-none flex flex-col justify-between print:hidden">
               <div>
                 <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
@@ -659,22 +659,22 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
             </div>
 
             {/* Radar Analysis Section */}
-            <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 flex flex-col justify-between">
-              <div>
-                <h3 className="text-sm font-black text-text">과목별 종합 균형 분석</h3>
-                <p className="text-[10px] text-text-faint font-semibold mt-0.5">레이더 방사형 성취도로 전체적인 균형을 모니터링합니다.</p>
+            <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 flex flex-col justify-between print:border-none print:shadow-none print:p-0 print:mx-auto print:max-w-md w-full avoid-page-break">
+              <div className="print:text-center">
+                <h3 className="text-sm font-black text-text print:text-base">과목별 종합 균형 분석</h3>
+                <p className="text-[10px] text-text-faint font-semibold mt-0.5 print:text-xs">레이더 방사형 성취도로 전체적인 균형을 모니터링합니다.</p>
               </div>
-              <div className="mt-5 max-w-lg mx-auto w-full flex-1 flex items-center justify-center">
+              <div className="mt-5 max-w-lg mx-auto w-full flex-1 flex items-center justify-center print:mt-4 print:h-[320px] print:w-[320px]">
                 <RadarChart subjectAnalysis={analyzed.subjectAnalysis} isDark={false} />
               </div>
             </div>
           </div>
 
           {/* Table Database Section */}
-          <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 mb-8 overflow-x-auto print:p-4 print:shadow-none print:mb-0">
-              <div className="mb-4">
-               <h3 className="text-base font-black text-text">학기 과목 전체 데이터 그리드</h3>
-               <p className="text-xs text-text-faint font-semibold mt-0.5">헤더를 클릭하면 정렬 기준을 바꿀 수 있습니다.</p>
+          <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 mb-8 overflow-x-auto print:p-0 print:shadow-none print:border-none print:mb-0 page-break-before">
+              <div className="mb-4 print:mb-2 print:border-b print:border-slate-200 print:pb-2">
+               <h3 className="text-base font-black text-text print:text-lg animate-none">학기 과목 전체 데이터 그리드</h3>
+               <p className="text-xs text-text-faint font-semibold mt-0.5 print:text-slate-500">각 과목별 원점수, 성취등급 및 백분위와 세부 수험생 학력 분포 분석 결과입니다.</p>
              </div>
              <table className="w-full min-w-[420px] border-collapse text-left font-sans">
                <thead>
@@ -706,7 +706,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                     const rowBg = isEven ? 'bg-surface' : 'bg-slate-200/40 dark:bg-slate-900/60';
                     return (
                       <React.Fragment key={s.subject}>
-                        <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors`}>
+                        <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors avoid-page-break`}>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-base font-black text-text`}>{formatSubjectName(s.subject)}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-base text-text-muted font-bold font-mono`}>{s.units}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-lg tabular-nums font-black font-mono text-primary`}>{s.score !== null ? <>{s.score}<span className="text-[11px] font-sans text-text-faint ml-0.5 align-baseline font-bold select-none">점</span></> : '-'}</td>
@@ -723,7 +723,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                        )}
                       </tr>
                      {s.score !== null && s.percentile !== null && showRank && (
-                       <tr className={`${rowBg} hover:bg-surface-2/40 transition-colors`}>
+                       <tr className={`${rowBg} hover:bg-surface-2/40 transition-colors avoid-page-break`}>
                          <td colSpan={showRank ? 6 : 4} className="border-b border-divider px-3 pt-0.5 pb-4">
                            <div className="w-full bg-surface rounded-2xl border border-divider p-4.5 grid grid-cols-1 md:grid-cols-[1fr_200px] gap-6 items-center">
                              <SubjectPositionBar 

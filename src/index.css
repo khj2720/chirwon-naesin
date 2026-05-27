@@ -129,13 +129,57 @@
   @media print {
     @page {
       size: A4 portrait;
-      margin: 1cm;
+      margin: 1.5cm 1.2cm;
     }
     html, body {
       background-color: white !important;
-      font-size: 9pt;
-      height: auto;
+      color: #0f172a !important;
+      font-size: 10pt;
+      height: auto !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
     }
-    .print-footer { display: block; text-align: center; font-size: 8pt; color: #888; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #ddd; }
+    /* Hide scrollbars during print */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    /* Recharts responsive printing dimensions override */
+    .recharts-responsive-container {
+      width: 320px !important;
+      height: 320px !important;
+      display: block !important;
+      margin: 0 auto !important;
+    }
+    .recharts-surface {
+      width: 320px !important;
+      height: 320px !important;
+    }
+    /* Specific typography sizes for table print */
+    table th, table td {
+      font-size: 9.5pt !important;
+    }
+    /* Avoid visual noise of active rows & charts boundaries and handle pagination */
+    .page-break-after {
+      page-break-after: always !important;
+      break-after: page !important;
+    }
+    .page-break-before {
+      page-break-before: always !important;
+      break-before: page !important;
+    }
+    .avoid-page-break {
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+    }
+    .print-footer { 
+      display: block; 
+      text-align: center; 
+      font-size: 8pt; 
+      color: #888; 
+      margin-top: 1.5rem; 
+      padding-top: 0.75rem; 
+      border-top: 1px solid #e2e8f0; 
+      break-inside: avoid;
+    }
   }
 }
