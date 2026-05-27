@@ -386,11 +386,11 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Header Card with Premium Layout */}
-          <div className="relative overflow-hidden rounded-3xl bg-slate-800 dark:bg-slate-900 p-6 text-white shadow-sm lg:p-8 print:bg-transparent print:text-black print:border print:border-slate-300 print:shadow-none print:p-5 print:rounded-2xl select-none">
-            {/* Ambient background glow (hidden on print) */}
-            <div className="absolute right-0 top-0 -mr-12 -mt-12 h-40 w-40 rounded-full bg-white/5 blur-2xl pointer-events-none print:hidden animate-pulse" />
+          <div className="relative overflow-hidden rounded-3xl bg-slate-800 dark:bg-slate-900 p-6 text-white shadow-sm lg:p-8 select-none">
+            {/* Ambient background glow */}
+            <div className="absolute right-0 top-0 -mr-12 -mt-12 h-40 w-40 rounded-full bg-white/5 blur-2xl pointer-events-none animate-pulse" />
             
-            <div className="flex flex-wrap items-center justify-between gap-6 relative z-10 print:flex-nowrap print:gap-4">
+            <div className="flex flex-wrap items-center justify-between gap-6 relative z-10">
               <div className="flex items-center gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden shadow-inner border border-white/10">
                   {/* 학교 마크 제거 후 단순 기하학 동그라미 심볼 */}
@@ -398,27 +398,27 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h1 className="text-2xl font-black tracking-tight print:text-xl">{student.성명}</h1>
-                    <span className="rounded-lg bg-white/15 px-2.5 py-0.5 text-[10px] font-bold tracking-tight print:bg-slate-100 print:border print:border-slate-200 print:text-slate-800">
+                    <h1 className="text-2xl font-black tracking-tight">{student.성명}</h1>
+                    <span className="rounded-lg bg-white/15 px-2.5 py-0.5 text-[10px] font-bold tracking-tight">
                       1학년 {classNum}반 {student.번호}번
                     </span>
                   </div>
-                  <p className="mt-1 text-xs opacity-80 print:opacity-100 print:text-slate-500 font-semibold font-mono print:text-[10px]">
+                  <p className="mt-1 text-xs opacity-80 font-semibold font-mono">
                     학번: 1{String(classNum).padStart(1, '0')}{String(student.번호).padStart(2, '0')}
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-6 text-left sm:text-right print:gap-4">
-                <div className="border-l-0 sm:border-l border-white/20 sm:pl-6 print:border-l print:border-slate-200 print:pl-5">
-                  <div className="text-[10px] font-extrabold uppercase tracking-wider text-white/70 mb-1 print:text-slate-500">
+              <div className="flex flex-wrap items-center gap-6 text-left sm:text-right">
+                <div className="border-l-0 sm:border-l border-white/20 sm:pl-6">
+                  <div className="text-[10px] font-extrabold uppercase tracking-wider text-white/70 mb-1">
                     이수단위 가중 평균등급
                   </div>
-                  <div className="text-3xl lg:text-4xl font-extrabold leading-none tabular-nums font-mono tracking-tight print:text-2xl">
-                    {weightedAvg ?? '-'} <span className="text-sm font-normal opacity-70 print:text-xs">등급</span>
+                  <div className="text-3xl lg:text-4xl font-extrabold leading-none tabular-nums font-mono tracking-tight">
+                    {weightedAvg ?? '-'} <span className="text-sm font-normal opacity-70">등급</span>
                   </div>
-                  <div className="mt-1.5 inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-bold select-none print:bg-slate-100 print:border print:border-slate-200 print:text-slate-800 print:mt-1">
-                    <Sparkles className="h-3 w-3 print:hidden" />
+                  <div className="mt-1.5 inline-flex items-center gap-1 rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-bold select-none">
+                    <Sparkles className="h-3 w-3" />
                      단순 평균 {simpleAvg ?? '-'}등급
                   </div>
                 </div>
@@ -427,7 +427,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Settings Row */}
-          <div className="flex flex-wrap items-center justify-start gap-6 select-none print:hidden bg-surface-2/30 px-5 py-3 rounded-xl border border-divider shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+          <div className="flex flex-wrap items-center justify-start gap-6 select-none bg-surface-2/30 px-5 py-3 rounded-xl border border-divider shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
             <div className="flex items-center gap-3">
               <span className="text-xs font-black uppercase tracking-wider text-text-faint">석차 기준</span>
               <select
@@ -453,125 +453,110 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Quick Summary Panels */}
-          <div className="flex flex-col md:flex-row gap-5 items-stretch print:flex-row print:gap-4 print:mb-2">
-            <div className="flex-1 w-full print:w-1/2">
-              <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-4 select-none print:grid-cols-2 print:gap-3 h-full">
+          <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-4 select-none">
             {/* Core Box 1 */}
             {showRank ? (
-              <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-xs transition hover:shadow-md print:p-3 print:shadow-none print:rounded-xl">
+              <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-xs transition hover:shadow-md">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint print:text-[9px]">학과 석차</div>
-                    <div className="mt-2 text-2xl lg:text-3xl font-black tabular-nums font-mono text-primary dark:text-accent print:text-lg print:mt-1">
-                      {currentRank ?? '-'} <span className="text-sm font-semibold text-text-muted font-sans print:text-[10px]">/ {N}명</span>
+                    <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint">학과 석차</div>
+                    <div className="mt-2 text-2xl lg:text-3xl font-black tabular-nums font-mono text-primary dark:text-accent">
+                      {currentRank ?? '-'} <span className="text-sm font-semibold text-text-muted font-sans">/ {N}명</span>
                     </div>
                   </div>
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light/50 text-primary dark:bg-primary-light/10 dark:text-accent print:hidden">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light/50 text-primary dark:bg-primary-light/10 dark:text-accent">
                     <Users className="h-5 w-5" />
                   </div>
                 </div>
-                <div className="mt-3 text-[10px] text-text-faint font-semibold print:mt-1 print:text-[8px]">{currentRankLabel}</div>
+                <div className="mt-3 text-[10px] text-text-faint font-semibold">{currentRankLabel}</div>
               </div>
             ) : (
-              <div className="relative overflow-hidden rounded-2xl border border-divider bg-surface-2 p-5 shadow-xs print:p-3 print:shadow-none print:rounded-xl opacity-60">
+              <div className="relative overflow-hidden rounded-2xl border border-divider bg-surface-2 p-5 shadow-xs opacity-60">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint print:text-[9px]">학과 석차</div>
-                    <div className="mt-2 text-xl font-bold font-sans text-text-muted print:text-sm print:mt-1">
+                    <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint">학과 석차</div>
+                    <div className="mt-2 text-xl font-bold font-sans text-text-muted">
                       비공개
                     </div>
                   </div>
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-3 text-text-muted print:hidden">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-3 text-text-muted">
                     <Users className="h-5 w-5" />
                   </div>
                 </div>
-                <div className="mt-3 text-[10px] text-text-muted font-semibold print:mt-1 print:text-[8px]">표시 안함</div>
+                <div className="mt-3 text-[10px] text-text-muted font-semibold">표시 안함</div>
               </div>
             )}
 
             {/* Core Box 2 */}
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-xs transition hover:shadow-md print:p-3 print:shadow-none print:rounded-xl">
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-xs transition hover:shadow-md">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint print:text-[9px]">평균 등급</div>
-                  <div className="mt-2 text-2xl lg:text-3xl font-black tabular-nums font-mono text-primary dark:text-accent print:text-lg print:mt-1">
+                  <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint">평균 등급</div>
+                  <div className="mt-2 text-2xl lg:text-3xl font-black tabular-nums font-mono text-primary dark:text-accent">
                     {weightedAvg ?? '-'}
                   </div>
                 </div>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light/50 text-primary dark:bg-primary-light/10 dark:text-accent print:hidden">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light/50 text-primary dark:bg-primary-light/10 dark:text-accent">
                   <Award className="h-5 w-5" />
                 </div>
               </div>
-              <div className="mt-3 text-[10px] text-text-faint font-semibold print:mt-1 print:text-[8px]">이수 가중 반영 값</div>
+              <div className="mt-3 text-[10px] text-text-faint font-semibold">이수 가중 반영 값</div>
             </div>
 
             {/* Core Box 3 */}
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-xs transition hover:shadow-md print:p-3 print:shadow-none print:rounded-xl">
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-xs transition hover:shadow-md">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint print:text-[9px]">단순 평균</div>
-                  <div className="mt-2 text-2xl lg:text-3xl font-black tabular-nums font-mono text-primary dark:text-accent print:text-lg print:mt-1">
+                  <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint">단순 평균</div>
+                  <div className="mt-2 text-2xl lg:text-3xl font-black tabular-nums font-mono text-primary dark:text-accent">
                     {simpleAvg ?? '-'}
                   </div>
                 </div>
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light/50 text-primary dark:bg-primary-light/10 dark:text-accent print:hidden">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light/50 text-primary dark:bg-primary-light/10 dark:text-accent">
                   <BookOpen className="h-5 w-5" />
                 </div>
               </div>
-              <div className="mt-3 text-[10px] text-text-faint font-semibold print:mt-1 print:text-[8px]">산술 단순 평균 값</div>
+              <div className="mt-3 text-[10px] text-text-faint font-semibold">산술 단순 평균 값</div>
             </div>
 
             {/* Core Box 4 */}
             {showRank ? (
-              <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-xs transition hover:shadow-md print:p-3 print:shadow-none print:rounded-xl">
+              <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-xs transition hover:shadow-md">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint print:text-[9px]">상위 백분위</div>
-                    <div className="mt-2 text-2xl lg:text-3xl font-black tabular-nums font-mono text-primary dark:text-accent print:text-lg print:mt-1">
+                    <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint">상위 백분위</div>
+                    <div className="mt-2 text-2xl lg:text-3xl font-black tabular-nums font-mono text-primary dark:text-accent">
                       {currentPercentile ? `${currentPercentile}%` : '-'}
                     </div>
                   </div>
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light/50 text-primary dark:bg-primary-light/10 dark:text-accent print:hidden">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-light/50 text-primary dark:bg-primary-light/10 dark:text-accent">
                     <TrendingUp className="h-5 w-5" />
                   </div>
                 </div>
-                <div className="mt-3 text-[10px] text-text-faint font-semibold font-sans print:mt-1 print:text-[8px]">{currentRankLabel}</div>
+                <div className="mt-3 text-[10px] text-text-faint font-semibold font-sans">{currentRankLabel}</div>
               </div>
             ) : (
-              <div className="relative overflow-hidden rounded-2xl border border-divider bg-surface-2 p-5 shadow-xs print:p-3 print:shadow-none print:rounded-xl opacity-60">
+              <div className="relative overflow-hidden rounded-2xl border border-divider bg-surface-2 p-5 shadow-xs opacity-60">
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint print:text-[9px]">상위 백분위</div>
-                    <div className="mt-2 text-xl font-bold font-sans text-text-muted print:text-sm print:mt-1">
+                    <div className="text-[11px] font-extrabold uppercase tracking-wider text-text-faint">상위 백분위</div>
+                    <div className="mt-2 text-xl font-bold font-sans text-text-muted">
                       비공개
                     </div>
                   </div>
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-3 text-text-muted print:hidden">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-3 text-text-muted">
                     <TrendingUp className="h-5 w-5" />
                   </div>
                 </div>
-                <div className="mt-3 text-[10px] text-text-muted font-semibold print:mt-1 print:text-[8px]">표시 안함</div>
+                <div className="mt-3 text-[10px] text-text-muted font-semibold">표시 안함</div>
               </div>
             )}
           </div>
-          </div>
-
-          {/* Radar Chart Section (Print Only Clone for 2x2 layout) */}
-          <div className="hidden print:flex rounded-2xl border border-border bg-surface p-4 flex-col justify-between items-center text-center avoid-page-break print:w-1/2">
-            <div>
-              <h3 className="text-sm font-black text-text">과목별 종합 균형 분석</h3>
-              <p className="text-[10px] text-text-faint font-semibold mt-0.5">레이더 방사형 등급 성취 지표</p>
-            </div>
-            <div className="w-[200px] h-[200px] flex items-center justify-center overflow-hidden">
-              <RadarChart subjectAnalysis={analyzed.subjectAnalysis} isDark={false} />
-            </div>
-          </div>
-        </div>
 
           {/* Simulation and Radar Side-by-Side Container */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch print:grid-cols-1 print:gap-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
             {/* Average Calculator Panel with Subject Selector Presets */}
-            <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 select-none flex flex-col justify-between print:hidden">
+            <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 select-none flex flex-col justify-between">
               <div>
                 <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div>
@@ -581,14 +566,14 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                   
                   <div className="flex gap-1.5 text-xs">
                     <button
-                      className={`flex flex-col items-center justify-center rounded-[18px] border px-3 py-1 text-[11px] font-black transition-all leading-[1.2] ${avgMode === 'weighted' ? 'border-primary bg-primary text-white print:bg-surface-offset print:text-text print:border-border' : 'border-border bg-surface-offset text-text-muted hover:text-text'}`}
+                      className={`flex flex-col items-center justify-center rounded-[18px] border px-3 py-1 text-[11px] font-black transition-all leading-[1.2] ${avgMode === 'weighted' ? 'border-primary bg-primary text-white' : 'border-border bg-surface-offset text-text-muted hover:text-text'}`}
                       onClick={() => setAvgMode('weighted')}
                     >
                       <span>이수단위</span>
                       <span>가중반영</span>
                     </button>
                     <button
-                      className={`flex flex-col items-center justify-center rounded-[18px] border px-3 py-1 text-[11px] font-black transition-all leading-[1.2] ${avgMode === 'simple' ? 'border-primary bg-primary text-white print:bg-surface-offset print:text-text print:border-border' : 'border-border bg-surface-offset text-text-muted hover:text-text'}`}
+                      className={`flex flex-col items-center justify-center rounded-[18px] border px-3 py-1 text-[11px] font-black transition-all leading-[1.2] ${avgMode === 'simple' ? 'border-primary bg-primary text-white' : 'border-border bg-surface-offset text-text-muted hover:text-text'}`}
                       onClick={() => setAvgMode('simple')}
                     >
                       <span>과목</span>
@@ -674,7 +659,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
             </div>
 
             {/* Radar Analysis Section */}
-            <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 flex flex-col justify-between print:hidden w-full avoid-page-break">
+            <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 flex flex-col justify-between w-full avoid-page-break">
               <div className="print:text-center">
                 <h3 className="text-sm font-black text-text print:text-base">과목별 종합 균형 분석</h3>
                 <p className="text-[10px] text-text-faint font-semibold mt-0.5 print:text-xs">레이더 방사형 성취도로 전체적인 균형을 모니터링합니다.</p>
@@ -686,10 +671,10 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Table Database Section */}
-          <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 mb-8 overflow-x-auto print:p-0 print:shadow-none print:border-none print:mb-0">
-              <div className="mb-4 print:mb-2 print:border-b print:border-slate-200 print:pb-2">
-               <h3 className="text-base font-black text-text print:text-lg animate-none">학기 과목 전체 데이터 그리드</h3>
-               <p className="text-xs text-text-faint font-semibold mt-0.5 print:text-slate-500">각 과목별 원점수, 성취등급 및 백분위와 세부 수험생 학력 분포 분석 결과입니다.</p>
+          <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 mb-8 overflow-x-auto">
+              <div className="mb-4">
+               <h3 className="text-base font-black text-text animate-none">학기 과목 전체 데이터 그리드</h3>
+               <p className="text-xs text-text-faint font-semibold mt-0.5">각 과목별 원점수, 성취등급 및 백분위와 세부 수험생 학력 분포 분석 결과입니다.</p>
              </div>
              <table className="w-full min-w-[420px] border-collapse text-left font-sans">
                <thead>
@@ -727,7 +712,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-base text-text-muted font-bold font-mono`}>{s.units}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-lg tabular-nums font-black font-mono text-primary`}>{s.score !== null ? <>{s.score}<span className="text-[11px] font-sans text-text-faint ml-0.5 align-baseline font-bold select-none">점</span></> : '-'}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-lg tabular-nums font-mono`}>
-                          <span className={`inline-flex items-center justify-center text-lg font-black whitespace-nowrap ${s.grade !== null ? `text-[var(--color-grade-${s.grade})]` : 'text-text-faint'} print:text-text`}>
+                          <span className={`inline-flex items-center justify-center text-lg font-black whitespace-nowrap ${s.grade !== null ? `text-[var(--color-grade-${s.grade})]` : 'text-text-faint'}`}>
                             {s.grade ? `${s.grade}등급` : '-'}
                           </span>
                         </td>
