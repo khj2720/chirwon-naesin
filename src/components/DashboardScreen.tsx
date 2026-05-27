@@ -700,13 +700,12 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                     })}
                   </tr>
                 </thead>
-                <tbody>
-                  {sortedTable.map((s, idx) => {
-                    const isEven = idx % 2 === 0;
-                    const rowBg = isEven ? 'bg-surface' : 'bg-slate-200/40 dark:bg-slate-900/60';
-                    return (
-                      <React.Fragment key={s.subject}>
-                        <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors avoid-page-break`}>
+                {sortedTable.map((s, idx) => {
+                  const isEven = idx % 2 === 0;
+                  const rowBg = isEven ? 'bg-surface' : 'bg-slate-200/40 dark:bg-slate-900/60';
+                  return (
+                    <tbody key={s.subject} className="avoid-page-break">
+                      <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors`}>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 print:pt-1 print:pb-0 border-b border-transparent' : 'py-4 print:py-1 border-b border-divider'} px-3 text-base font-black text-text`}>{formatSubjectName(s.subject)}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 print:pt-1 print:pb-0 border-b border-transparent' : 'py-4 print:py-1 border-b border-divider'} px-3 text-base text-text-muted font-bold font-mono`}>{s.units}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 print:pt-1 print:pb-0 border-b border-transparent' : 'py-4 print:py-1 border-b border-divider'} px-3 text-lg tabular-nums font-black font-mono text-primary`}>{s.score !== null ? <>{s.score}<span className="text-[11px] font-sans text-text-faint ml-0.5 align-baseline font-bold select-none">점</span></> : '-'}</td>
@@ -761,12 +760,11 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                          </td>
                        </tr>
                      )}
-                   </React.Fragment>
-                 );
-               })}
+                    </tbody>
+                  );
+                })}
 
-               </tbody>
-             </table>
+              </table>
           </div>
           
           <div className="print-footer select-none">출력일자: {new Date().toLocaleDateString('ko-KR')} | 내신성적 분석 레포트 v2</div>
