@@ -147,9 +147,9 @@
       margin: 1.2cm 1cm;
     }
     html, body {
-      background-color: white !important;
+      background-color: var(--color-bg) !important;
       color: #0f172a !important;
-      font-size: 9.5pt !important;
+      font-size: 13.5px !important;
       height: auto !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;

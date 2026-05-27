@@ -64,7 +64,7 @@ export function SubjectPositionBar({
       </div>
 
       {/* Simple, modern line indicator */}
-      <div className="relative w-full h-2 bg-slate-200 rounded-full mt-5 mb-2 flex items-center">
+      <div className="relative w-full h-2 bg-slate-200 rounded-full mt-5 print:mt-3 mb-2 print:mb-1 flex items-center">
         {/* Boundary Marks */}
         {[10, 34, 66, 90].map(boundaryPos => (
           <div 
@@ -664,7 +664,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                 <h3 className="text-sm font-black text-text">과목별 종합 균형 분석</h3>
                 <p className="text-[10px] text-text-faint font-semibold mt-0.5">레이더 방사형 성취도로 전체적인 균형을 모니터링합니다.</p>
               </div>
-              <div className="mt-5 max-w-lg mx-auto w-full flex-1 flex items-center justify-center">
+              <div className="mt-5 print:mt-1 max-w-lg mx-auto w-full flex-1 flex items-center justify-center print:h-[180px]">
                 <RadarChart subjectAnalysis={analyzed.subjectAnalysis} isDark={false} />
               </div>
             </div>
@@ -704,29 +704,28 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                   {sortedTable.map((s, idx) => {
                     const isEven = idx % 2 === 0;
                     const rowBg = isEven ? 'bg-surface' : 'bg-slate-200/40 dark:bg-slate-900/60';
-                    const isPageBreak = idx === 1;
                     return (
                       <React.Fragment key={s.subject}>
-                        <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors avoid-page-break ${isPageBreak ? 'print-page-break-before' : ''}`}>
-                       <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-base font-black text-text`}>{formatSubjectName(s.subject)}</td>
-                       <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-base text-text-muted font-bold font-mono`}>{s.units}</td>
-                       <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-lg tabular-nums font-black font-mono text-primary`}>{s.score !== null ? <>{s.score}<span className="text-[11px] font-sans text-text-faint ml-0.5 align-baseline font-bold select-none">점</span></> : '-'}</td>
-                       <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-lg tabular-nums font-mono`}>
+                        <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors avoid-page-break`}>
+                       <td className={`${s.score !== null ? 'pt-4 pb-2 print:pt-1 print:pb-0 border-b border-transparent' : 'py-4 print:py-1 border-b border-divider'} px-3 text-base font-black text-text`}>{formatSubjectName(s.subject)}</td>
+                       <td className={`${s.score !== null ? 'pt-4 pb-2 print:pt-1 print:pb-0 border-b border-transparent' : 'py-4 print:py-1 border-b border-divider'} px-3 text-base text-text-muted font-bold font-mono`}>{s.units}</td>
+                       <td className={`${s.score !== null ? 'pt-4 pb-2 print:pt-1 print:pb-0 border-b border-transparent' : 'py-4 print:py-1 border-b border-divider'} px-3 text-lg tabular-nums font-black font-mono text-primary`}>{s.score !== null ? <>{s.score}<span className="text-[11px] font-sans text-text-faint ml-0.5 align-baseline font-bold select-none">점</span></> : '-'}</td>
+                       <td className={`${s.score !== null ? 'pt-4 pb-2 print:pt-1 print:pb-0 border-b border-transparent' : 'py-4 print:py-1 border-b border-divider'} px-3 text-lg tabular-nums font-mono`}>
                           <span className={`inline-flex items-center justify-center text-lg font-black whitespace-nowrap ${s.grade !== null ? `text-[var(--color-grade-${s.grade})]` : 'text-text-faint'}`}>
                             {s.grade ? `${s.grade}등급` : '-'}
                           </span>
                         </td>
                        {showRank && (
                          <>
-                           <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-lg tabular-nums font-black font-mono text-text`}>{s.schoolRank ?? '-'} <span className="opacity-50 text-sm font-sans font-bold">/ {N}</span></td>
-                           <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-lg tabular-nums font-mono font-black text-text`}>{s.percentile !== null ? `${s.percentile}%` : '-'}</td>
+                           <td className={`${s.score !== null ? 'pt-4 pb-2 print:pt-1 print:pb-0 border-b border-transparent' : 'py-4 print:py-1 border-b border-divider'} px-3 text-lg tabular-nums font-black font-mono text-text`}>{s.schoolRank ?? '-'} <span className="opacity-50 text-sm font-sans font-bold">/ {N}</span></td>
+                           <td className={`${s.score !== null ? 'pt-4 pb-2 print:pt-1 print:pb-0 border-b border-transparent' : 'py-4 print:py-1 border-b border-divider'} px-3 text-lg tabular-nums font-mono font-black text-text`}>{s.percentile !== null ? `${s.percentile}%` : '-'}</td>
                          </>
                        )}
                       </tr>
                      {s.score !== null && s.percentile !== null && showRank && (
                        <tr className={`${rowBg} hover:bg-surface-2/40 transition-colors avoid-page-break`}>
-                         <td colSpan={showRank ? 6 : 4} className="border-b border-divider px-3 pt-0.5 pb-4">
-                           <div className="w-full bg-surface rounded-2xl border border-divider p-4.5 grid grid-cols-1 md:grid-cols-[1fr_200px] gap-6 items-center">
+                         <td colSpan={showRank ? 6 : 4} className="border-b border-divider px-3 pt-0.5 pb-4 print:pb-1">
+                           <div className="w-full bg-surface rounded-2xl border border-divider p-4.5 print:p-2.5 grid grid-cols-1 md:grid-cols-[1fr_200px] gap-6 items-center flex-1">
                              <SubjectPositionBar 
                                percentile={s.percentile} 
                                score={s.score} 
@@ -736,17 +735,17 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                                boundaries={s.boundaries}
                               />
                              {/* Gap Analysis */}
-                             <div className="flex flex-col md:border-l md:border-divider/50 md:pl-4">
+                             <div className="flex flex-col md:border-l md:border-divider/50 md:pl-4 print:pl-2">
                                {s.gap && s.grade && s.grade > 1 ? (
                                  <div className="w-full">
-                                   <div className="text-xs text-text-faint font-bold mb-1 tracking-tight">다음 등급({s.grade - 1}등급) 격차</div>
+                                   <div className="text-xs text-text-faint font-bold mb-1 tracking-tight print:text-[10px] print:mb-0.5">다음 등급({s.grade - 1}등급) 격차</div>
                                    <div className="flex items-baseline gap-2">
-                                     <span className="text-xl font-black text-primary dark:text-accent tabular-nums font-mono">+{s.gap.pointGap}점</span>
-                                     <span className="text-sm font-semibold text-text-muted tracking-tight">(약 {s.gap.rankGap}명 필요)</span>
+                                     <span className="text-xl font-black text-primary dark:text-accent tabular-nums font-mono print:text-lg">+{s.gap.pointGap}점</span>
+                                     <span className="text-sm font-semibold text-text-muted tracking-tight print:text-[10px]">(약 {s.gap.rankGap}명 필요)</span>
                                    </div>
                                  </div>
                                ) : (
-                                 <div className="w-full flex items-center gap-1.5 text-xs font-bold text-primary dark:text-accent min-h-8">
+                                 <div className="w-full flex items-center gap-1.5 text-xs font-bold text-primary dark:text-accent min-h-8 print:text-[10px] print:min-h-5">
                                    {s.grade === 1 ? (
                                      <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 px-2 py-1 rounded-lg w-full">
                                        <Sparkles className="h-3.5 w-3.5 shrink-0" />
