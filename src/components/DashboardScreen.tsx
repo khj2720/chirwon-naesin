@@ -664,14 +664,14 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                 <h3 className="text-sm font-black text-text print:text-base">과목별 종합 균형 분석</h3>
                 <p className="text-[10px] text-text-faint font-semibold mt-0.5 print:text-xs">레이더 방사형 성취도로 전체적인 균형을 모니터링합니다.</p>
               </div>
-              <div className="mt-5 max-w-lg mx-auto w-full flex-1 flex items-center justify-center print:mt-1 print:h-[200px] print:w-[200px]">
+              <div className="mt-5 max-w-lg mx-auto w-full flex-1 flex items-center justify-center print:mt-1 print:h-[260px] print:w-[260px]">
                 <RadarChart subjectAnalysis={analyzed.subjectAnalysis} isDark={false} />
               </div>
             </div>
           </div>
 
           {/* Table Database Section */}
-          <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 mb-8 overflow-x-auto print:p-0 print:shadow-none print:border-none print:mb-0">
+          <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 mb-8 overflow-x-auto print:p-0 print:shadow-none print:border-none print:mb-0 page-break-before">
               <div className="mb-4 print:mb-2 print:border-b print:border-slate-200 print:pb-2">
                <h3 className="text-base font-black text-text print:text-lg animate-none">학기 과목 전체 데이터 그리드</h3>
                <p className="text-xs text-text-faint font-semibold mt-0.5 print:text-slate-500">각 과목별 원점수, 성취등급 및 백분위와 세부 수험생 학력 분포 분석 결과입니다.</p>
@@ -706,7 +706,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                     const rowBg = isEven ? 'bg-surface' : 'bg-slate-200/40 dark:bg-slate-900/60';
                     return (
                       <React.Fragment key={s.subject}>
-                        <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors avoid-page-break ${idx === 2 ? 'print-page-break-before' : ''}`}>
+                        <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors avoid-page-break`}>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-base font-black text-text`}>{formatSubjectName(s.subject)}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-base text-text-muted font-bold font-mono`}>{s.units}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-lg tabular-nums font-black font-mono text-primary`}>{s.score !== null ? <>{s.score}<span className="text-[11px] font-sans text-text-faint ml-0.5 align-baseline font-bold select-none">점</span></> : '-'}</td>

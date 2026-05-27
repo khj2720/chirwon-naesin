@@ -145,14 +145,14 @@
     }
     /* Recharts responsive printing dimensions override */
     .recharts-responsive-container {
-      width: 200px !important;
-      height: 200px !important;
+      width: 260px !important;
+      height: 260px !important;
       display: block !important;
       margin: 0 auto !important;
     }
     .recharts-surface {
-      width: 200px !important;
-      height: 200px !important;
+      width: 260px !important;
+      height: 260px !important;
     }
     /* Reduce SVG text label size for print axis alignment */
     svg text {
