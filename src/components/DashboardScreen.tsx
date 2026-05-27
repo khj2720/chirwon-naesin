@@ -767,7 +767,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
               </table>
           </div>
           
-          <div className="print-footer select-none">출력일자: {new Date().toLocaleDateString('ko-KR')} | 내신성적 분석 레포트 v2</div>
+          <div className="print-footer select-none">출력일자: {new Date().toLocaleDateString('ko-KR')} | made by KHJ</div>
         </div>
       </main>
 
