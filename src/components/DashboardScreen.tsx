@@ -319,7 +319,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
       </aside>
 
       {/* Main Container */}
-      <main className="flex-1 overflow-y-auto bg-bg p-4 lg:p-7 print:hidden">
+      <main className="flex-1 overflow-y-auto bg-bg p-4 lg:p-7 print:p-0 print:overflow-visible">
         <div className="mx-auto flex max-w-[960px] flex-col gap-6">
           
           {/* Mobile Selectors Widget - Hidden on Large Screens & Print */}
@@ -554,7 +554,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Simulation and Radar Side-by-Side Container */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch print:grid-cols-1 print:gap-0 page-break-before">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch print:grid-cols-1 print:gap-0">
             {/* Average Calculator Panel with Subject Selector Presets */}
             <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 select-none flex flex-col justify-between print:hidden">
               <div>
@@ -706,7 +706,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                     const rowBg = isEven ? 'bg-surface' : 'bg-slate-200/40 dark:bg-slate-900/60';
                     return (
                       <React.Fragment key={s.subject}>
-                        <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors avoid-page-break`}>
+                        <tr className={`${rowBg} hover:bg-surface-2/60 transition-colors avoid-page-break ${idx === 2 ? 'print-page-break-before' : ''}`}>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-base font-black text-text`}>{formatSubjectName(s.subject)}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-base text-text-muted font-bold font-mono`}>{s.units}</td>
                        <td className={`${s.score !== null ? 'pt-4 pb-2 border-b border-transparent' : 'py-4 border-b border-divider'} px-3 text-lg tabular-nums font-black font-mono text-primary`}>{s.score !== null ? <>{s.score}<span className="text-[11px] font-sans text-text-faint ml-0.5 align-baseline font-bold select-none">점</span></> : '-'}</td>
@@ -781,228 +781,6 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
         <Printer className="h-4 w-4" />
         <span>리포트 인쇄</span>
       </button>
-
-      {/* Print-Only Template: Guarantees exactly 2 A4 pages */}
-      <div className="hidden print:flex flex-col w-[210mm] min-h-[594mm] bg-white text-slate-900 mx-auto font-sans text-[10pt] leading-normal antialiased">
-        
-        {/* PAGE 1 */}
-        <div className="flex flex-col h-[297mm] px-10 pt-10 pb-8 border-b border-dashed border-slate-300 relative justify-between box-border" style={{ pageBreakAfter: 'always', breakAfter: 'page' }}>
-          <div>
-            {/* Header: Academic Crest Emblem & Title */}
-            <div className="flex items-center justify-between border-b-2 border-slate-850 pb-4 mb-6">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white font-black text-sm">
-                  ★
-                </div>
-                <div>
-                  <h1 className="text-xl font-black tracking-tight text-slate-900">1차 지필평가 분석 보고서</h1>
-                  <p className="text-[10px] text-slate-500 font-bold tracking-wider font-mono uppercase">ACADEMIC PERFORMANCE REPORT</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-sm font-black text-slate-900">{student.성명} 학생</div>
-                <div className="text-[10px] text-slate-500 font-bold mt-0.5">1학년 {classNum}반 {student.번호}번</div>
-              </div>
-            </div>
-
-            {/* Quick Summary Statistical Boxes */}
-            <div className="grid grid-cols-4 gap-4 mb-6 text-slate-900">
-              <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
-                <div className="text-[10px] font-black uppercase text-slate-500 tracking-wider">학과 석차</div>
-                <div className="mt-1 text-2xl font-black font-mono tracking-tight text-slate-900">
-                  {showRank ? `${currentRank ?? '-'} / ${N}명` : '비공개'}
-                </div>
-                <div className="mt-1 text-[9px] text-slate-400 font-bold">{showRank ? currentRankLabel : '표시 안함'}</div>
-              </div>
-              
-              <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
-                <div className="text-[10px] font-black uppercase text-slate-500 tracking-wider">이수 가중 평균</div>
-                <div className="mt-1 text-2xl font-black font-mono tracking-tight text-slate-900">
-                  {weightedAvg ?? '-'} <span className="text-xs font-normal">등급</span>
-                </div>
-                <div className="mt-1 text-[9px] text-slate-400 font-bold">이수단위 가중치 반영</div>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
-                <div className="text-[10px] font-black uppercase text-slate-500 tracking-wider">단순 산술 평균</div>
-                <div className="mt-1 text-2xl font-black font-mono tracking-tight text-slate-900">
-                  {simpleAvg ?? '-'} <span className="text-xs font-normal">등급</span>
-                </div>
-                <div className="mt-1 text-[9px] text-slate-400 font-bold">산술단위 단순 평균</div>
-              </div>
-
-              <div className="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
-                <div className="text-[10px] font-black uppercase text-slate-500 tracking-wider">상위 백분위</div>
-                <div className="mt-1 text-2xl font-black font-mono tracking-tight text-slate-900">
-                  {showRank ? (currentPercentile ? `${currentPercentile}%` : '-') : '비공개'}
-                </div>
-                <div className="mt-1 text-[9px] text-slate-400 font-bold">{showRank ? currentRankLabel : '표시 안함'}</div>
-              </div>
-            </div>
-
-            {/* Side-by-Side: Mini Radar & First Page Subjects */}
-            <div className="grid grid-cols-[220px_1fr] gap-6 items-start mb-6">
-              
-              {/* Radar Column */}
-              <div className="rounded-2xl border border-slate-200 p-4 flex flex-col justify-between h-[280px]">
-                <div className="text-center border-b border-slate-100 pb-2">
-                  <h3 className="text-xs font-black text-slate-900">종합 과목 균형 분석</h3>
-                  <p className="text-[9px] text-slate-400 font-medium">레이더 방사성 분석표</p>
-                </div>
-                <div className="h-[200px] w-[200px] flex items-center justify-center overflow-hidden mx-auto mt-1">
-                  <RadarChart subjectAnalysis={analyzed.subjectAnalysis} isDark={false} />
-                </div>
-              </div>
-
-              {/* Core Subjects Page 1 Column */}
-              <div className="flex flex-col gap-4">
-                <div className="border-b border-slate-200 pb-1.5">
-                  <h3 className="text-xs font-black text-slate-900">핵심 기본 교과 분석 (국어/수학)</h3>
-                  <p className="text-[9px] text-slate-400">교과별 원점수 및 석차 위치 평가 선상</p>
-                </div>
-
-                {sortedTable.filter(s => s.subject === '국어' || s.subject === '수학').map((s) => (
-                  <div key={s.subject} className="rounded-xl border border-slate-200 p-4 bg-slate-50/30">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-black text-slate-900">{formatSubjectName(s.subject)}</span>
-                      <div className="flex items-center gap-3 text-[11px] font-bold text-slate-600">
-                        <span>단위: {s.units}</span>
-                        <span>원점수: <b className="text-slate-900 font-black">{s.score ?? '-'}점</b></span>
-                        <span className="text-primary font-black">{s.grade ? `${s.grade}등급` : '-'}</span>
-                        {showRank && (
-                          <>
-                            <span>석차: <b className="text-slate-900">{s.schoolRank ?? '-'} / {N}</b></span>
-                            <span>백분위: <b className="text-slate-900">{s.percentile !== null ? `${s.percentile}%` : '-'}</b></span>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    {s.score !== null && s.percentile !== null && showRank && (
-                      <div className="bg-white rounded-lg p-2.5 border border-slate-100">
-                        <SubjectPositionBar 
-                          percentile={s.percentile} 
-                          score={s.score} 
-                          grade={s.grade} 
-                          schoolRank={s.schoolRank}
-                          schoolN={s.schoolN ?? N}
-                          boundaries={s.boundaries}
-                        />
-                        {s.gap && s.grade && s.grade > 1 ? (
-                          <div className="mt-1 px-1 flex items-center justify-between text-[9px] text-slate-500 font-bold">
-                            <span>다음 등급({s.grade - 1}등급) 격차: +{s.gap.pointGap}점</span>
-                            <span>(약 {s.gap.rankGap}명 추가 진입 필요)</span>
-                          </div>
-                        ) : s.grade === 1 ? (
-                          <div className="mt-1 px-1 text-[9px] text-emerald-600 font-bold">
-                            ★ 현재 교과 최고 등급 유지 중
-                          </div>
-                        ) : null}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Page 1 Footer */}
-          <div className="border-t border-slate-100 pt-3 text-center text-[9px] text-slate-400 font-bold flex justify-between">
-            <span>출력일자: {new Date().toLocaleDateString('ko-KR')}</span>
-            <span>1차 지필평가 분석 보고서 (Page 1 of 2)</span>
-            <span>성담 학력 진단 시스템</span>
-          </div>
-        </div>
-
-        {/* PAGE 2 */}
-        <div className="flex flex-col h-[297mm] px-10 pt-10 pb-8 relative justify-between box-border" style={{ pageBreakBefore: 'always', breakBefore: 'page' }}>
-          <div>
-            <div className="flex items-center justify-between border-b-2 border-slate-850 pb-4 mb-6">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white font-black text-sm">
-                  ★
-                </div>
-                <div>
-                  <h1 className="text-xl font-black tracking-tight text-slate-900">학기 전체 과목 상세 분석</h1>
-                  <p className="text-[10px] text-slate-500 font-bold tracking-wider font-mono uppercase">DETAIL SUBJECT RECORD & PLOTTING</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="text-sm font-black text-slate-900">{student.성명} 학생</div>
-                <div className="text-[10px] text-slate-500 font-bold mt-0.5">1학년 {classNum}반 {student.번호}번</div>
-              </div>
-            </div>
-
-            <div className="mb-4">
-              <h3 className="text-xs font-black text-slate-900">나머지 탐구/실기 교과 분석 ({sortedTable.filter(s => s.subject !== '국어' && s.subject !== '수학').map(s=>formatSubjectName(s.subject)).join(', ')})</h3>
-              <p className="text-[9px] text-slate-400">교과별 세부 백분위 위치 및 다음 학급 달성 목표 등급 격차 분석 정보</p>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              {sortedTable.filter(s => s.subject !== '국어' && s.subject !== '수학').map((s) => (
-                <div key={s.subject} className="rounded-xl border border-slate-200 p-4 bg-slate-50/10">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-black text-slate-900">{formatSubjectName(s.subject)}</span>
-                    <div className="flex items-center gap-3 text-[11px] font-bold text-slate-600">
-                      <span>단위: {s.units}</span>
-                      <span>원점수: <b className="text-slate-900 font-black">{s.score ?? '-'}점</b></span>
-                      <span className="text-primary font-black">{s.grade ? `${s.grade}등급` : '-'}</span>
-                      {showRank && (
-                        <>
-                          <span>석차: <b className="text-slate-900">{s.schoolRank ?? '-'} / {N}</b></span>
-                          <span>백분위: <b className="text-slate-900">{s.percentile !== null ? `${s.percentile}%` : '-'}</b></span>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                  {s.score !== null && s.percentile !== null && showRank && (
-                    <div className="bg-white rounded-lg p-2.5 border border-slate-100">
-                      <SubjectPositionBar 
-                        percentile={s.percentile} 
-                        score={s.score} 
-                        grade={s.grade} 
-                        schoolRank={s.schoolRank}
-                        schoolN={s.schoolN ?? N}
-                        boundaries={s.boundaries}
-                      />
-                      {s.gap && s.grade && s.grade > 1 ? (
-                        <div className="mt-1 px-1 flex items-center justify-between text-[9px] text-slate-500 font-bold">
-                          <span>다음 등급({s.grade - 1}등급) 격차: +{s.gap.pointGap}점</span>
-                          <span>(약 {s.gap.rankGap}명 추가 진입 필요)</span>
-                        </div>
-                      ) : s.grade === 1 ? (
-                        <div className="mt-1 px-1 text-[9px] text-emerald-600 font-bold">
-                          ★ 현재 교과 최고 등급 유지 중
-                        </div>
-                      ) : null}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Official Certification / Signature Box */}
-            <div className="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50/50 p-5 text-center mt-12">
-              <h4 className="text-xs font-black text-slate-800 mb-2">평가위원 의견 및 종합 종합 안내</h4>
-              <p className="text-[10px] text-slate-500 leading-relaxed font-semibold max-w-lg mx-auto">
-                본 성적 예측 리포트는 수험생의 원점수 등락률 및 각 학급/교과 영역별 경쟁 집단 분포를 바탕으로 과학적으로 추론된 분석 정보입니다. 학생의 주도적인 학습 균형 영역 수립을 위해 참고용 지표로 활용하여 주십시오.
-              </p>
-              <div className="mt-6 flex justify-center items-center gap-4">
-                <div className="w-[80px] h-[1px] bg-slate-200"></div>
-                <span className="text-xs font-black text-slate-800 tracking-wider">성담 고등부 학력 진단원 (인)</span>
-                <div className="w-[80px] h-[1px] bg-slate-200"></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Page 2 Footer */}
-          <div className="border-t border-slate-100 pt-3 text-center text-[9px] text-slate-400 font-bold flex justify-between">
-            <span>출력일자: {new Date().toLocaleDateString('ko-KR')}</span>
-            <span>1차 지필평가 분석 보고서 (Page 2 of 2)</span>
-            <span>성담 학력 진단 시스템</span>
-          </div>
-        </div>
-
-      </div>
     </div>
   );
 }

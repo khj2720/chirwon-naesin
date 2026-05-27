@@ -211,6 +211,10 @@
       page-break-before: always !important;
       break-before: page !important;
     }
+    .print-page-break-before {
+      page-break-before: always !important;
+      break-before: page !important;
+    }
     .avoid-page-break {
       page-break-inside: avoid !important;
       break-inside: avoid !important;
