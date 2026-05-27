@@ -144,7 +144,7 @@
     }
     @page {
       size: A4 portrait;
-      margin: 1cm 1cm;
+      margin: 0;
     }
     html, body {
       background-color: var(--color-bg) !important;
@@ -153,6 +153,9 @@
       height: auto !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
+    }
+    body {
+      padding: 1cm 1cm !important;
     }
     /* Hide scrollbars during print */
     ::-webkit-scrollbar {
