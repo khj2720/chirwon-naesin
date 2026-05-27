@@ -129,12 +129,12 @@
   @media print {
     @page {
       size: A4 portrait;
-      margin: 1.5cm 1.2cm;
+      margin: 1.2cm 1cm;
     }
     html, body {
       background-color: white !important;
       color: #0f172a !important;
-      font-size: 10pt;
+      font-size: 9.5pt !important;
       height: auto !important;
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
@@ -145,18 +145,62 @@
     }
     /* Recharts responsive printing dimensions override */
     .recharts-responsive-container {
-      width: 320px !important;
-      height: 320px !important;
+      width: 200px !important;
+      height: 200px !important;
       display: block !important;
       margin: 0 auto !important;
     }
     .recharts-surface {
-      width: 320px !important;
-      height: 320px !important;
+      width: 200px !important;
+      height: 200px !important;
     }
-    /* Specific typography sizes for table print */
+    /* Reduce SVG text label size for print axis alignment */
+    svg text {
+      font-size: 8px !important;
+    }
+    /* Compress table cell heights and decrease font size slightly for elegant data table printing */
     table th, table td {
+      font-size: 8.5pt !important;
+      padding-top: 4px !important;
+      padding-bottom: 4px !important;
+    }
+    /* Further compact position bars and gaps */
+    .rounded-2xl.border.border-divider {
+      padding: 0.5rem 0.75rem !important;
+      margin-top: 2px !important;
+      margin-bottom: 2px !important;
+    }
+    .relative.flex.text-sm.font-extrabold {
+      font-size: 7.5pt !important;
+      height: 1.5rem !important;
+      margin-top: 0.25rem !important;
+    }
+    .relative.flex.text-sm.font-extrabold span {
+      font-size: 7.5pt !important;
+    }
+    .text-xs {
+      font-size: 7.5pt !important;
+    }
+    .text-sm {
+      font-size: 8.5pt !important;
+    }
+    .text-base {
       font-size: 9.5pt !important;
+    }
+    .text-lg {
+      font-size: 10.5pt !important;
+    }
+    .text-xl {
+      font-size: 11.5pt !important;
+    }
+    .text-2xl {
+      font-size: 14pt !important;
+    }
+    .text-3xl {
+      font-size: 16pt !important;
+    }
+    .text-4xl {
+      font-size: 18pt !important;
     }
     /* Avoid visual noise of active rows & charts boundaries and handle pagination */
     .page-break-after {
@@ -174,10 +218,10 @@
     .print-footer { 
       display: block; 
       text-align: center; 
-      font-size: 8pt; 
-      color: #888; 
-      margin-top: 1.5rem; 
-      padding-top: 0.75rem; 
+      font-size: 7.5pt; 
+      color: #64748b; 
+      margin-top: 1rem; 
+      padding-top: 0.5rem; 
       border-top: 1px solid #e2e8f0; 
       break-inside: avoid;
     }

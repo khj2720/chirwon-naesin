@@ -664,7 +664,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
                 <h3 className="text-sm font-black text-text print:text-base">과목별 종합 균형 분석</h3>
                 <p className="text-[10px] text-text-faint font-semibold mt-0.5 print:text-xs">레이더 방사형 성취도로 전체적인 균형을 모니터링합니다.</p>
               </div>
-              <div className="mt-5 max-w-lg mx-auto w-full flex-1 flex items-center justify-center print:mt-4 print:h-[320px] print:w-[320px]">
+              <div className="mt-5 max-w-lg mx-auto w-full flex-1 flex items-center justify-center print:mt-1 print:h-[200px] print:w-[200px]">
                 <RadarChart subjectAnalysis={analyzed.subjectAnalysis} isDark={false} />
               </div>
             </div>
