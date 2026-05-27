@@ -144,7 +144,7 @@
     }
     @page {
       size: A4 portrait;
-      margin: 1.2cm 1cm;
+      margin: 1cm 1cm;
     }
     html, body {
       background-color: var(--color-bg) !important;
@@ -176,8 +176,8 @@
     /* Compress table cell heights and decrease font size slightly for elegant data table printing */
     table th, table td {
       font-size: 8.5pt !important;
-      padding-top: 4px !important;
-      padding-bottom: 4px !important;
+      padding-top: 2px !important;
+      padding-bottom: 2px !important;
     }
     /* Further compact position bars and gaps */
     .rounded-2xl.border.border-divider {
@@ -239,8 +239,8 @@
       text-align: center; 
       font-size: 7.5pt; 
       color: #64748b; 
-      margin-top: 1rem; 
-      padding-top: 0.5rem; 
+      margin-top: 0.5rem; 
+      padding-top: 0.25rem; 
       border-top: 1px solid #e2e8f0; 
       break-inside: avoid;
     }

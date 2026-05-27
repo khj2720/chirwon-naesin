@@ -250,7 +250,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
   };
 
   return (
-    <div className="flex min-h-screen lg:grid font-sans bg-bg print:block" style={{ gridTemplateColumns: 'minmax(220px, 250px) 1fr' }}>
+    <div className="flex min-h-screen print:min-h-0 lg:grid font-sans bg-bg print:block" style={{ gridTemplateColumns: 'minmax(220px, 250px) 1fr' }}>
       {/* Sidebar for Desktop Only */}
       <aside className="hidden lg:flex print:hidden flex-col gap-5 border-r border-divider bg-surface px-4 py-5 sticky top-0 h-screen overflow-y-auto shadow-sm select-none">
         <div className="flex items-center gap-2 border-b border-divider pb-4 text-sm font-black text-primary dark:text-accent">
@@ -320,7 +320,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
 
       {/* Main Container */}
       <main className="flex-1 overflow-y-auto bg-bg p-4 lg:p-7 print:p-0 print:overflow-visible">
-        <div className="mx-auto flex max-w-[960px] flex-col gap-6">
+        <div className="mx-auto flex max-w-[960px] flex-col gap-6 print:gap-4">
           
           {/* Mobile Selectors Widget - Hidden on Large Screens & Print */}
           <div className="block lg:hidden rounded-2xl border border-border bg-surface p-4.5 shadow-xs print:hidden">
@@ -554,7 +554,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Simulation and Radar Side-by-Side Container */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 print:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 print:grid-cols-2 gap-6 print:gap-4 items-stretch print:mb-4">
             {/* Average Calculator Panel with Subject Selector Presets */}
             <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 select-none flex flex-col justify-between">
               <div>
@@ -671,7 +671,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Table Database Section */}
-          <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 mb-8 overflow-x-auto">
+          <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 mb-8 overflow-x-auto print:overflow-visible print:mb-0 print:p-0 print:shadow-none print:border-none">
               <div className="mb-4">
                <h3 className="text-base font-black text-text animate-none">학기 과목 전체 데이터 그리드</h3>
                <p className="text-xs text-text-faint font-semibold mt-0.5">각 과목별 원점수, 성취등급 및 백분위와 세부 수험생 학력 분포 분석 결과입니다.</p>

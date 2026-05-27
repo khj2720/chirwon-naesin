@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <>
-      <div className="min-h-screen">
+      <div className="min-h-screen print:min-h-0 print:h-auto">
         {classes.length === 0 ? (
           <UploadScreen onUpload={(data) => setClasses(data)} />
         ) : !selectedStudent || selectedClassNum === null ? (
