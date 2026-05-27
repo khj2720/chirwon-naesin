@@ -453,7 +453,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Quick Summary Panels */}
-          <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-4 select-none">
+          <div className="grid grid-cols-2 gap-3.5 lg:grid-cols-4 print:grid-cols-4 select-none">
             {/* Core Box 1 */}
             {showRank ? (
               <div className="relative overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-xs transition hover:shadow-md">
@@ -554,7 +554,7 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
           </div>
 
           {/* Simulation and Radar Side-by-Side Container */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-2 print:grid-cols-2 gap-6 items-stretch">
             {/* Average Calculator Panel with Subject Selector Presets */}
             <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 select-none flex flex-col justify-between">
               <div>
@@ -660,11 +660,11 @@ export function DashboardScreen({ classes, student, classNum, onChangeStudent, o
 
             {/* Radar Analysis Section */}
             <div className="rounded-2xl border border-border bg-surface p-5 shadow-xs lg:px-6 flex flex-col justify-between w-full avoid-page-break">
-              <div className="print:text-center">
-                <h3 className="text-sm font-black text-text print:text-base">과목별 종합 균형 분석</h3>
-                <p className="text-[10px] text-text-faint font-semibold mt-0.5 print:text-xs">레이더 방사형 성취도로 전체적인 균형을 모니터링합니다.</p>
+              <div>
+                <h3 className="text-sm font-black text-text">과목별 종합 균형 분석</h3>
+                <p className="text-[10px] text-text-faint font-semibold mt-0.5">레이더 방사형 성취도로 전체적인 균형을 모니터링합니다.</p>
               </div>
-              <div className="mt-5 max-w-lg mx-auto w-full flex-1 flex items-center justify-center print:mt-1 print:h-[260px] print:w-[260px]">
+              <div className="mt-5 max-w-lg mx-auto w-full flex-1 flex items-center justify-center">
                 <RadarChart subjectAnalysis={analyzed.subjectAnalysis} isDark={false} />
               </div>
             </div>
