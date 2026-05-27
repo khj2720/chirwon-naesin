@@ -127,6 +127,21 @@
   }
   
   @media print {
+    :root, html, body {
+      --color-bg: #f1f5f9;
+      --color-surface: #ffffff;
+      --color-surface-2: #f8fafc;
+      --color-surface-offset: #e2e8f0;
+      --color-divider: #f1f5f9;
+      --color-border: #e2e8f0;
+      --color-text: #334155;
+      --color-text-muted: #64748b;
+      --color-text-faint: #94a3b8;
+      --color-primary: #1b3a7a;
+      --color-primary-hover: #1e3a8a;
+      --color-primary-light: #eff6ff;
+      --color-accent: #3b82f6;
+    }
     @page {
       size: A4 portrait;
       margin: 1.2cm 1cm;
@@ -145,14 +160,14 @@
     }
     /* Recharts responsive printing dimensions override */
     .recharts-responsive-container {
-      width: 260px !important;
-      height: 260px !important;
+      width: 100% !important;
+      height: 100% !important;
       display: block !important;
       margin: 0 auto !important;
     }
     .recharts-surface {
-      width: 260px !important;
-      height: 260px !important;
+      width: 100% !important;
+      height: 100% !important;
     }
     /* Reduce SVG text label size for print axis alignment */
     svg text {
