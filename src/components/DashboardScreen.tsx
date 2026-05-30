@@ -20,7 +20,6 @@ import {
   analyzeStudent, computeAvgGrade, getRank, getPercentile, SubjectAnalysis, Boundary 
 } from '../lib/grading';
 import { RadarChart } from './RadarChart';
-import { ChirwonLogo } from './Logo';
 import { formatSubjectName } from '../lib/utils';
 
 interface DashboardScreenProps {
